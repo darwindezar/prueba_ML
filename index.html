@@ -3,74 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prueba Machine Learning</title>
+    <title>PRUEBA_ML</title>
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-            background-color: #ffccd5;
+            background-color: #e0f7fa; /* Light cyan background */
+            color: #004d40; /* Dark green text */
             font-family: 'Courier New', cursive;
             text-align: center;
-            animation: fadeIn 2s ease-in-out;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        header {
+            background-color: #00796b; /* Teal background */
+            color: #ffffff; /* White text */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 600px;
         }
         h1 {
-            color: #d63384;
             font-size: 2.5em;
-            text-shadow: 2px 2px 4px #ff4081;
+            text-shadow: 2px 2px 4px #004d40; /* Dark green shadow */
         }
-        #collage {
-            width: 300px;
-            height: 300px;
-            overflow: hidden;
-            position: relative;
-            margin-top: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-        }
-        .slideshow {
-            display: flex;
-            width: 600%;
-            animation: slide 12s infinite;
-        }
-        .slideshow img {
+        p {
+            background-color: #b2dfdb; /* Light green background */
+            color: #004d40; /* Dark green text */
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 10px 0;
+            max-width: 600px;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 15px;
         }
-        @keyframes slide {
-            0%, 16.66% { transform: translateX(0%); }
-            16.67%, 33.32% { transform: translateX(-100%); }
-            33.33%, 49.98% { transform: translateX(-200%); }
-            50%, 66.65% { transform: translateX(-300%); }
-            66.66%, 83.31% { transform: translateX(-400%); }
-            83.32%, 100% { transform: translateX(-500%); }
+        #music-button {
+            background-color: #004d40; /* Dark green background */
+            color: #ffffff; /* White text */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .carousel {
+            position: relative;
+            max-width: 600px;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .carousel img {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .carousel-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .carousel-button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                padding: 10px;
+            }
+            #music-button {
+                padding: 8px 16px;
+            }
+            .collage img {
+                width: 80px;
+                height: 80px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>💖 Para mi Bebecita Hermosa 💖</h1>
-    <audio id="background-music" autoplay loop>
+    <header>
+        <h1>❤️❤️ Para Adely ❤️❤️</h1>
+    </header>
+    <button id="music-button">Siente la vibra</button>
+    <audio id="background-music" loop autoplay>
         <source src="gorillaz.mp3" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
     </audio>
-    <p>🎶 La música debería estar sonando... 💕</p>
-    <div id="collage">
-        <div class="slideshow">
-            <img src="foto1.jpg" alt="Foto 1">
-            <img src="foto2.jpg" alt="Foto 2">
-            <img src="foto3.jpg" alt="Foto 3">
-            <img src="foto4.jpg" alt="Foto 4">
-            <img src="foto5.jpg" alt="Foto 5">
-            <img src="foto6.jpg" alt="Foto 6">
+    <p>Desde ese 13 de febrero, el día en el cual nos conocimos, no pensaría que hoy estaríamos juntos como una hermosa familia. Gracias por tanto, perdón por tan poco.</p>
+    <div class="carousel">
+        <img src="foto1.jpg" alt="Foto 1" class="active">
+        <img src="foto2.jpg" alt="Foto 2">
+        <img src="foto3.jpg" alt="Foto 3">
+        <img src="foto4.jpg" alt="Foto 4">
+        <img src="foto5.jpg" alt="Foto 5">
+        <img src="foto6.jpg" alt="Foto 6">
+        <!-- Agrega más fotos según sea necesario -->
+        <div class="carousel-buttons">
+            <button class="carousel-button" id="prev-button">❮</button>
+            <button class="carousel-button" id="next-button">❯</button>
         </div>
     </div>
+    <p>Estos años juntos fueron muy hermosos.</p>
+    <script>
+        document.getElementById('music-button').addEventListener('click', function() {
+            var audio = document.getElementById('background-music');
+            if (audio.paused) {
+                audio.play();
+                this.textContent = 'Siente la vibra';
+            } else {
+                audio.pause();
+                this.textContent = 'Reproducir Música';
+            }
+        });
+
+        var currentIndex = 0;
+        var images = document.querySelectorAll('.carousel img');
+        var totalImages = images.length;
+
+        function showNextImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % totalImages;
+            images[currentIndex].classList.add('active');
+        }
+
+        function showPrevImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            images[currentIndex].classList.add('active');
+        }
+
+        document.getElementById('next-button').addEventListener('click', showNextImage);
+        document.getElementById('prev-button').addEventListener('click', showPrevImage);
+
+        setInterval(showNextImage, 3000); // Cambia la imagen cada 3 segundos
+    </script>
 </body>
 </html>
